@@ -3,6 +3,7 @@
 import { PRODUCT_CATEGORIES } from "@/config";
 import { useState } from "react";
 import NavItem from "./NavItem";
+import { cn } from "@/lib/utils";
 
 const NavItems = () => {
   const [activeIndex, setActiveIndex] = useState<null | number>(null);
