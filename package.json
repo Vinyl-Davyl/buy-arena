@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@payloadcms/bundler-webpack": "^1.0.5",
+    "@payloadcms/db-mongodb": "^1.0.6",
+    "@payloadcms/richtext-slate": "^1.1.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
@@ -19,6 +22,7 @@
     "express": "^4.19.2",
     "lucide-react": "^0.383.0",
     "next": "14.2.3",
+    "payload": "^2.0.15",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
@@ -31,8 +35,8 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
-    "postcss": "^8",
     "nodemon": "^3.0.1",
+    "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
