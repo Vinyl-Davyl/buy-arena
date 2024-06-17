@@ -16,9 +16,7 @@ export const authRouter = router({
         collection: "users",
         where: {
           email: {
-            equals: {
-              equals: email,
-            },
+            equals: email,
           },
         },
       });
@@ -27,7 +25,13 @@ export const authRouter = router({
 
       await payload.create({
         collection: "users",
-        data: {},
+        data: {
+          email,
+          password,
+          role: "user",
+        },
       });
+
+      return { success: true, sentToEmail: email };
     }),
 });
