@@ -4,7 +4,6 @@ import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-// only loggedin user can go through == create user endpoint
 export const authRouter = router({
   createPayloadUser: publicProcedure
     .input(AuthCredentialsValidator)
@@ -12,7 +11,7 @@ export const authRouter = router({
       const { email, password } = input;
       const payload = await getPayloadClient();
 
-      // check if the user already exists
+      // check if user already exists
       const { docs: users } = await payload.find({
         collection: "users",
         where: {
@@ -48,9 +47,32 @@ export const authRouter = router({
         token,
       });
 
-      if (!isVerified) {
+      if (!isVerified) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      return { success: true };
+    }),
+
+  signIn: publicProcedure
+    .input(AuthCredentialsValidator)
+    .mutation(async ({ input, ctx }) => {
+      const { email, password } = input;
+      const { res } = ctx;
+
+      const payload = await getPayloadClient();
+
+      try {
+        await payload.login({
+          collection: "users",
+          data: {
+            email,
+            password,
+          },
+          res,
+        });
+
+        return { success: true };
+      } catch (err) {
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
-      return { success: true };
     }),
 });
