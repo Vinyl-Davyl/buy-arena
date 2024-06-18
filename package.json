@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts nodemon",
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -29,11 +30,12 @@
     "express": "^4.19.2",
     "lucide-react": "^0.383.0",
     "next": "14.2.3",
+    "nodemailer": "^6.9.13",
     "payload": "^2.0.15",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
-    "sooner": "^1.1.4",
+    "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
@@ -41,6 +43,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
