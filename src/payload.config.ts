@@ -3,10 +3,10 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import path from "path";
-import { Users } from "./app/collections/Users";
+import { Users } from "./collections/Users";
 import dotenv from "dotenv";
-import { Products } from "./app/collections/Products/Products";
-import { Media } from "./app/collections/Media";
+import { Products } from "./collections/Products/Products";
+import { Media } from "./collections/Media";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
