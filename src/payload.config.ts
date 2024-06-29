@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { Products } from "./collections/Products/Products";
 import { Media } from "./collections/Media";
 import { ProductFiles } from "./collections/ProductFile";
+import { Orders } from "./collections/Orders";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
@@ -16,7 +17,7 @@ dotenv.config({
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
   // list of all the collection schema calls for CMS(payload setup)
-  collections: [Users, Products, Media, ProductFiles],
+  collections: [Users, Products, Media, ProductFiles, Orders],
   routes: {
     admin: "/sell",
   },
