@@ -16,6 +16,9 @@ const transporter = nodemailer.createTransport({
     user: "resend",
     pass: process.env.RESEND_API_KEY,
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 let cached = (global as any).payload;
