@@ -121,6 +121,8 @@ const Page = async ({ params }: PageProps) => {
               <ImageSlider urls={validUrls} />
             </div>
           </div>
+
+          {/* Add to cart */}
         </div>
       </div>
     </MaxWidthWrapper>

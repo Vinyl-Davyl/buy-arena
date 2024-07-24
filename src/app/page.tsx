@@ -35,7 +35,7 @@ export default function Home() {
             <span className="text-blue-600">digital assets</span>.
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-            Welcome to iSeller Base. Every asset on our platform is verified by
+            Welcome to DigitalHippo. Every asset on our platform is verified by
             our team to ensure our highest quality standards.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
@@ -48,8 +48,8 @@ export default function Home() {
 
         <ProductReel
           query={{ sort: "desc", limit: 4 }}
-          href="/products"
-          title="Brand New"
+          href="/products?sort=recent"
+          title="Brand new"
         />
       </MaxWidthWrapper>
 
