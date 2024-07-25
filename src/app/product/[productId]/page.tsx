@@ -1,5 +1,3 @@
-"use client";
-
 import ImageSlider from "@/components/ImageSlider";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { PRODUCT_CATEGORIES } from "@/config";
@@ -31,7 +29,7 @@ const Page = async ({ params }: PageProps) => {
       id: {
         equals: productId,
       },
-      approcedForSale: {
+      approvedForSale: {
         equals: "approved",
       },
     },
