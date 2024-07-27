@@ -87,7 +87,7 @@ const Page = async ({ params }: PageProps) => {
             </div>
 
             <section className="mt-4">
-              <div className="flex-items-center">
+              <div className="flex items-center">
                 <p className="font-medium text-gray-900">
                   {formatPrice(product.price)}
                 </p>
@@ -98,7 +98,7 @@ const Page = async ({ params }: PageProps) => {
               </div>
 
               <div className="mt-4 space-y-6">
-                <p className="text-base text-muted-forground">
+                <p className="text-base text-muted-foreground">
                   {product.description}
                 </p>
               </div>
