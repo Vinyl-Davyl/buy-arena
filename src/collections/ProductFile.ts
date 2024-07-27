@@ -1,4 +1,4 @@
-import { User } from "@/payload-types";
+import { User } from "../payload-types";
 import { BeforeChangeHook } from "payload/dist/collections/config/types";
 import { Access, CollectionConfig } from "payload/types";
 

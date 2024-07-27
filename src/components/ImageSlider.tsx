@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -5,8 +7,8 @@ import "swiper/css/pagination";
 import type SwiperType from "swiper";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageSliderProps {
   urls: string[];
@@ -15,7 +17,7 @@ interface ImageSliderProps {
 const ImageSlider = ({ urls }: ImageSliderProps) => {
   const [swiper, setSwiper] = useState<null | SwiperType>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  //   arrow definition on sides of product
+
   const [slideConfig, setSlideConfig] = useState({
     isBeginning: true,
     isEnd: activeIndex === (urls.length ?? 0) - 1,
@@ -87,7 +89,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
               loading="eager"
               className="-z-10 h-full w-full object-cover object-center"
               src={url}
-              alt="Product Image"
+              alt="Product image"
             />
           </SwiperSlide>
         ))}

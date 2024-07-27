@@ -5,7 +5,7 @@ export const PRODUCT_CATEGORIES = [
     featured: [
       {
         name: "Editor picks",
-        href: `/products?category=ui_kits`,
+        href: "/products?category=ui_kits",
         imageSrc: "/nav/ui-kits/mixed.jpg",
       },
       {
@@ -26,7 +26,7 @@ export const PRODUCT_CATEGORIES = [
     featured: [
       {
         name: "Favorite Icon Picks",
-        href: `/products?category=icons`,
+        href: "/products?category=icons",
         imageSrc: "/nav/icons/picks.jpg",
       },
       {
