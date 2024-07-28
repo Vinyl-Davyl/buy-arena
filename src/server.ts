@@ -36,6 +36,7 @@ const start = async () => {
     },
   });
 
+  // stripe webhook configuration on prod too
   app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler);
 
   const payload = await getPayloadClient({

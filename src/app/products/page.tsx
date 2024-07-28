@@ -13,6 +13,7 @@ const parse = (param: Param) => {
 };
 
 const ProductsPage = ({ searchParams }: ProductsPageProps) => {
+  // pending on the dropdown on the home nabar
   const sort = parse(searchParams.sort);
   const category = parse(searchParams.category);
 
