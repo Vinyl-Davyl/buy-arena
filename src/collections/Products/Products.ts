@@ -4,9 +4,11 @@ import { CollectionConfig } from "payload/types";
 import { Product } from "../../payload-types";
 import { stripe } from "../../lib/stripe";
 
+// Defines a before change hook named addUser that runs before any change (create or update) on the Product collection.
 const addUser: BeforeChangeHook<Product> = async ({ req, data }) => {
   const user = req.user;
 
+  // Adds the user's ID to the product data and returns the modified data.
   return { ...data, user: user.id };
 };
 

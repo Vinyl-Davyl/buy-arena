@@ -1,6 +1,5 @@
 "use client";
 
-import NavItems from "@/components/NavItems";
 import { Button } from "@/components/ui/button";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { useCart } from "@/hooks/use-cart";
@@ -9,7 +8,7 @@ import { trpc } from "@/trpc/client";
 import { Check, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Page = () => {
@@ -27,7 +26,6 @@ const Page = () => {
   const productIds = items.map(({ product }) => product.id);
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
-
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -199,9 +197,7 @@ const Page = () => {
             <div className="mt-6">
               <Button
                 disabled={items.length === 0 || isLoading}
-                onClick={() => {
-                  createCheckoutSession({ productIds });
-                }}
+                onClick={() => createCheckoutSession({ productIds })}
                 className="w-full"
                 size="lg"
               >
