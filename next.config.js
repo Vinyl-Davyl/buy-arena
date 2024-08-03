@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "buyarena-production.up.railway.app",
+        hostname: "buy-arena.vercel.app/",
       },
     ],
   },
