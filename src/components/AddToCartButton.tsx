@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { useCart } from "@/hooks/use-cart";
 import { Product } from "@/payload-types";
+import { toast } from "sonner";
 
 const AddToCartButton = ({ product }: { product: Product }) => {
   const { addItem } = useCart();
@@ -14,18 +15,17 @@ const AddToCartButton = ({ product }: { product: Product }) => {
       setIsSuccess(false);
     }, 2000);
 
-    return () => clearInterval(timeout);
+    return () => clearTimeout(timeout);
   }, [isSuccess]);
 
+  const handleAddToCart = () => {
+    addItem(product);
+    setIsSuccess(true);
+    toast.success(`${product.name} added to cart!`);
+  };
+
   return (
-    <Button
-      onClick={() => {
-        addItem(product);
-        setIsSuccess(true);
-      }}
-      size="lg"
-      className="w-full"
-    >
+    <Button onClick={handleAddToCart} size="lg" className="w-full">
       {isSuccess ? "Added!" : "Add to cart"}
     </Button>
   );
