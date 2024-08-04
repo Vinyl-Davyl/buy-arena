@@ -58,7 +58,7 @@ export function constructMetadata({
       creator: "@Vinylchi",
     },
     icons,
-    metadataBase: new URL("https://buy-arena.vercel.app/"),
+    metadataBase: new URL("https://buy-arena.vercel.app"),
     ...(noIndex && {
       robots: {
         index: false,
