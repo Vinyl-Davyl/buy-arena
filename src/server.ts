@@ -31,6 +31,17 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
+  app.use(cors());
+  // app.use(
+  //   cors({
+  //     origin: "*",
+  //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  //     allowedHeaders: ["Content-Type", "Authorization"],
+  //     exposedHeaders: ["Authorization"],
+  //     credentials: true,
+  //     optionsSuccessStatus: 200,
+  //   })
+  // );
   app.use(
     cors({
       origin: "*",
