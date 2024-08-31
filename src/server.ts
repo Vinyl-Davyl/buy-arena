@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { getPayloadClient } from "./get-payload";
 import { nextApp, nextHandler } from "./next-utils";
 import * as trpcExpress from "@trpc/server/adapters/express";
@@ -30,6 +31,17 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
+  app.use(
+    cors({
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      exposedHeaders: ["Authorization"],
+      credentials: true,
+      optionsSuccessStatus: 200,
+    })
+  );
+
   const webhookMiddleware = bodyParser.json({
     verify: (req: WebhookRequest, _, buffer) => {
       req.rawBody = buffer;
