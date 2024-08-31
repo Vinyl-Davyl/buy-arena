@@ -31,7 +31,6 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
-  app.use(cors({ origin: "https://buy-arena-production.up.railway.app" }));
   // app.use(
   //   cors({
   //     origin: "*",
@@ -44,7 +43,7 @@ const start = async () => {
   // );
   app.use(
     cors({
-      origin: "*",
+      origin: "https://buy-arena-production.up.railway.app  ",
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       exposedHeaders: ["Authorization"],
