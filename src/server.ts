@@ -31,7 +31,7 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
-  app.use(cors());
+  app.use(cors({ origin: "https://buy-arena-production.up.railway.app" }));
   // app.use(
   //   cors({
   //     origin: "*",
