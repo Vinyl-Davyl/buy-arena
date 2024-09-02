@@ -7,7 +7,7 @@ import { appRouter } from "./trpc";
 import { inferAsyncReturnType } from "@trpc/server";
 import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
-import { stripeWebhookHandler } from "./webhooks";
+import { stripeWebhookHandler, getUserHandler } from "./webhooks";
 import nextBuild from "next/dist/build";
 import path from "path";
 import { PayloadRequest } from "payload/types";
@@ -31,19 +31,9 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
-  // app.use(
-  //   cors({
-  //     origin: "*",
-  //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  //     allowedHeaders: ["Content-Type", "Authorization"],
-  //     exposedHeaders: ["Authorization"],
-  //     credentials: true,
-  //     optionsSuccessStatus: 200,
-  //   })
-  // );
   app.use(
     cors({
-      origin: "https://buy-arena-production.up.railway.app  ",
+      origin: "*",
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       exposedHeaders: ["Authorization"],
@@ -60,6 +50,9 @@ const start = async () => {
 
   // stripe webhook configuration on prod too
   app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler);
+
+  // Add the getUserHandler route
+  app.get("/api/users/me", getUserHandler);
 
   const payload = await getPayloadClient({
     initOptions: {
