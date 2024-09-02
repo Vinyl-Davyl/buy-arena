@@ -29,41 +29,7 @@ export type WebhookRequest = IncomingMessage & {
   rawBody: Buffer;
 };
 
-// Custom CORS middleware
-const corsMiddleware = (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-) => {
-  const allowedOrigins = [
-    "https://buy-arena.vercel.app",
-    "https://buy-arena-git-development-vinyldavyls-projects.vercel.app",
-    // Add any other origins you need to support
-  ];
-
-  const origin = req.headers.origin;
-  if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-};
-
 const start = async () => {
-  // Apply custom CORS middleware to all routes
-  app.use(corsMiddleware);
-
   const webhookMiddleware = bodyParser.json({
     verify: (req: WebhookRequest, _, buffer) => {
       req.rawBody = buffer;
