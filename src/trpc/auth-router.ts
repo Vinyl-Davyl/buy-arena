@@ -4,7 +4,7 @@ import { getPayloadClient } from "../get-payload";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-export const authRouter: any = router({
+export const authRouter = router({
   createPayloadUser: publicProcedure
     .input(AuthCredentialsValidator)
     .mutation(async ({ input }) => {
