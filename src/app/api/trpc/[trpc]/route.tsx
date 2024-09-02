@@ -35,7 +35,8 @@ async function handler(req: NextRequest) {
     endpoint: "/api/trpc",
     req: req as unknown as Request,
     router: appRouter,
-    createContext: () => ({ req }),
+    // @ts-expect-error context already passed from express middleware
+    createContext: () => ({}),
     onError({ error }) {
       console.error("Error in tRPC handler:", error);
     },
