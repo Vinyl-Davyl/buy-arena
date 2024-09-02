@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import { getPayloadClient } from "./get-payload";
 import { nextApp, nextHandler } from "./next-utils";
 import * as trpcExpress from "@trpc/server/adapters/express";
@@ -30,24 +29,40 @@ export type WebhookRequest = IncomingMessage & {
   rawBody: Buffer;
 };
 
+// Custom CORS middleware
+const corsMiddleware = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
+  const allowedOrigins = [
+    "https://buy-arena.vercel.app",
+    "https://buy-arena-git-development-vinyldavyls-projects.vercel.app",
+    // Add any other origins you need to support
+  ];
+
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+};
+
 const start = async () => {
-  // Configure CORS
-  const corsOptions = {
-    origin: [
-      "https://buy-arena.vercel.app",
-      "https://buy-arena-git-development-vinyldavyls-projects.vercel.app",
-      // Add any other origins you need to support
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  };
-
-  // Apply CORS to all routes
-  app.use(cors(corsOptions));
-
-  // Handle OPTIONS requests
-  app.options("*", cors(corsOptions));
+  // Apply custom CORS middleware to all routes
+  app.use(corsMiddleware);
 
   const webhookMiddleware = bodyParser.json({
     verify: (req: WebhookRequest, _, buffer) => {
@@ -100,10 +115,8 @@ const start = async () => {
 
   app.use("/cart", cartRouter);
 
-  // Apply CORS to tRPC routes
   app.use(
     "/api/trpc",
-    cors(corsOptions),
     trpcExpress.createExpressMiddleware({
       router: appRouter,
       createContext,
