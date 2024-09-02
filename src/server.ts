@@ -31,16 +31,23 @@ export type WebhookRequest = IncomingMessage & {
 };
 
 const start = async () => {
-  app.use(
-    cors({
-      origin: "*",
-      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      exposedHeaders: ["Authorization"],
-      credentials: true,
-      optionsSuccessStatus: 200,
-    })
-  );
+  // Configure CORS
+  const corsOptions = {
+    origin: [
+      "https://buy-arena.vercel.app",
+      "https://buy-arena-git-development-vinyldavyls-projects.vercel.app",
+      // Add any other origins you need to support
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  };
+
+  // Apply CORS to all routes
+  app.use(cors(corsOptions));
+
+  // Handle OPTIONS requests
+  app.options("*", cors(corsOptions));
 
   const webhookMiddleware = bodyParser.json({
     verify: (req: WebhookRequest, _, buffer) => {
@@ -92,8 +99,11 @@ const start = async () => {
   });
 
   app.use("/cart", cartRouter);
+
+  // Apply CORS to tRPC routes
   app.use(
     "/api/trpc",
+    cors(corsOptions),
     trpcExpress.createExpressMiddleware({
       router: appRouter,
       createContext,
