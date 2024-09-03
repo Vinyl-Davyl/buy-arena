@@ -1,4 +1,3 @@
-
 import express from "express";
 import { WebhookRequest } from "./server";
 import { stripe } from "./lib/stripe";
@@ -104,4 +103,49 @@ export const stripeWebhookHandler = async (
 
   return res.status(200).send();
 };
-    
+
+export const getUserHandler = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const payload = await getPayloadClient();
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    // Verify the token and get the user
+    const user = await payload.find({
+      collection: "users",
+      where: {
+        token: {
+          equals: token,
+        },
+      },
+    });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.error("Error in getUserHandler:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const apiHandler = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  if (req.method === "POST" && req.path === "/webhook") {
+    return stripeWebhookHandler(req, res);
+  } else if (req.method === "GET" && req.path === "/api/users/me") {
+    return getUserHandler(req, res);
+  } else {
+    res.status(404).json({ message: "Not found" });
+  }
+};

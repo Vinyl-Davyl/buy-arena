@@ -7,18 +7,36 @@ export const getServerSideUser = async (
 ) => {
   const token = cookies.get("payload-token")?.value;
 
-  const meRes = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
-    {
-      headers: {
-        Authorization: `JWT ${token}`,
-      },
+  if (!token) {
+    console.log("No token found in cookies");
+    return { user: null };
+  }
+
+  try {
+    const meRes = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
+      {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      }
+    );
+
+    if (!meRes.ok) {
+      console.error(`Error fetching user: ${meRes.status} ${meRes.statusText}`);
+      return { user: null };
     }
-  );
 
-  const { user } = (await meRes.json()) as {
-    user: User | null;
-  };
+    const data = await meRes.json();
 
-  return { user };
+    if (!data.user) {
+      console.log("No user data returned from API");
+      return { user: null };
+    }
+
+    return { user: data.user as User };
+  } catch (error) {
+    console.error("Error in getServerSideUser:", error);
+    return { user: null };
+  }
 };
