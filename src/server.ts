@@ -38,6 +38,7 @@ const start = async () => {
   app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler);
   // Add the getUserHandler route
   app.get("/api/users/me", getUserHandler);
+
   const payload = await getPayloadClient({
     initOptions: {
       express: app,
