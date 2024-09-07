@@ -27,14 +27,9 @@
 //       return { user: null };
 //     }
 
-//     const data = await meRes.json();
+//     const user = (await meRes.json()) as User;
 
-//     if (!data.user) {
-//       console.log("No user data returned from API");
-//       return { user: null };
-//     }
-
-//     return { user: data.user as User };
+//     return { user };
 //   } catch (error) {
 //     console.error("Error in getServerSideUser:", error);
 //     return { user: null };
