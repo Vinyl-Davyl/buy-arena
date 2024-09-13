@@ -91,6 +91,7 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
                         req.rawBody = buffer;
                     },
                 });
+                // stripe webhook configuration on prod too
                 app.post("/api/webhooks/stripe", webhookMiddleware, webhooks_1.stripeWebhookHandler);
                 return [4 /*yield*/, (0, get_payload_1.getPayloadClient)({
                         initOptions: {

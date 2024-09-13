@@ -6,7 +6,7 @@ import { appRouter } from "./trpc";
 import { inferAsyncReturnType } from "@trpc/server";
 import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
-import { stripeWebhookHandler, getUserHandler } from "./webhooks";
+import { stripeWebhookHandler } from "./webhooks";
 import nextBuild from "next/dist/build";
 import path from "path";
 import { PayloadRequest } from "payload/types";
@@ -37,7 +37,7 @@ const start = async () => {
   // stripe webhook configuration on prod too
   app.post("/api/webhooks/stripe", webhookMiddleware, stripeWebhookHandler);
   // Add the getUserHandler route
-  app.get("/api/users/me", getUserHandler);
+  // app.get("/api/users/me", getUserHandler);
 
   const payload = await getPayloadClient({
     initOptions: {
