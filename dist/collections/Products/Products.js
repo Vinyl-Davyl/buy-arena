@@ -46,6 +46,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Products = void 0;
 var config_1 = require("../../config");
@@ -60,14 +69,77 @@ var addUser = function (_a) { return __awaiter(void 0, [_a], void 0, function (_
         return [2 /*return*/, __assign(__assign({}, data), { user: user.id })];
     });
 }); };
+var syncUser = function (_a) { return __awaiter(void 0, [_a], void 0, function (_b) {
+    var fullUser, products, allIDs_1, createdProductIDs, dataToUpdate;
+    var req = _b.req, doc = _b.doc;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
+            case 0: return [4 /*yield*/, req.payload.findByID({
+                    collection: "users",
+                    id: req.user.id,
+                })];
+            case 1:
+                fullUser = _c.sent();
+                if (!(fullUser && typeof fullUser === "object")) return [3 /*break*/, 3];
+                products = fullUser.products;
+                allIDs_1 = __spreadArray([], ((products === null || products === void 0 ? void 0 : products.map(function (product) {
+                    return typeof product === "object" ? product.id : product;
+                })) || []), true);
+                createdProductIDs = allIDs_1.filter(function (id, index) { return allIDs_1.indexOf(id) === index; });
+                dataToUpdate = __spreadArray(__spreadArray([], createdProductIDs, true), [doc.id], false);
+                return [4 /*yield*/, req.payload.update({
+                        collection: "users",
+                        id: fullUser.id,
+                        data: {
+                            products: dataToUpdate,
+                        },
+                    })];
+            case 2:
+                _c.sent();
+                _c.label = 3;
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+var isAdminOrHasAccess = function () {
+    return function (_a) {
+        var _user = _a.req.user;
+        var user = _user;
+        // Only admin can be able to read any product
+        if (!user)
+            return false;
+        if (user.role === "admin")
+            return true;
+        var userProductIDs = (user.products || []).reduce(function (acc, product) {
+            if (!product)
+                return acc;
+            if (typeof product === "string") {
+                acc.push(product);
+            }
+            else {
+                acc.push(product.id);
+            }
+            return acc;
+        }, []);
+        return {
+            id: {
+                in: userProductIDs,
+            },
+        };
+    };
+};
 exports.Products = {
     slug: "products",
     admin: {
         useAsTitle: "name",
     },
-    access: {},
-    // payments
+    access: {
+        read: isAdminOrHasAccess(),
+        update: isAdminOrHasAccess(),
+        delete: isAdminOrHasAccess(),
+    },
     hooks: {
+        afterChange: [syncUser],
         beforeChange: [
             addUser,
             function (args) { return __awaiter(void 0, void 0, void 0, function () {
@@ -116,7 +188,6 @@ exports.Products = {
                 condition: function () { return false; },
             },
         },
-        // each product would then have
         {
             name: "name",
             label: "Name",
@@ -159,7 +230,6 @@ exports.Products = {
             label: "Product Status",
             type: "select",
             defaultValue: "pending",
-            // not accessible to everyone
             access: {
                 create: function (_a) {
                     var req = _a.req;
