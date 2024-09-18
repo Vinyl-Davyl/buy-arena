@@ -50,7 +50,7 @@ function constructMetadata(_a) {
             description: description,
             images: [image],
             creator: "@Vinylchi",
-        }, icons: icons, metadataBase: new URL("https://buy-arena.vercel.app") }, (noIndex && {
+        }, icons: icons, metadataBase: new URL("https://buy-arena.onrender.com") }, (noIndex && {
         robots: {
             index: false,
             follow: false,
