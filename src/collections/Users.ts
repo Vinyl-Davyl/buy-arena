@@ -11,6 +11,8 @@ const adminsAndUser: Access = ({ req: { user } }) => {
   };
 };
 
+const baseUrl = 'https://buy-arena.onrender.com' || process.env.NEXT_PUBLIC_SERVER_URL;
+
 export const Users: CollectionConfig = {
   slug: "users",
   auth: {
@@ -19,7 +21,7 @@ export const Users: CollectionConfig = {
         return PrimaryActionEmailHtml({
           actionLabel: "verify your account",
           buttonText: "Verify Account",
-          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=${token}`,
+          href: `${baseUrl}/verify-email?token=${token}`,
         });
       },
     },
