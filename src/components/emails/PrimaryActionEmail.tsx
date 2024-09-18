@@ -44,7 +44,7 @@ export const EmailTemplate = ({
             Use the button below to {actionLabel}.
           </Text>
           <Section style={btnContainer}>
-            <Button style={button} href={window.location.href}>
+            <Button style={button} href={href}>
               {buttonText}
             </Button>
           </Section>
