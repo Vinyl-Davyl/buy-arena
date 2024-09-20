@@ -97,7 +97,7 @@ export const Products: CollectionConfig = {
           const createdProduct = await stripe.products.create({
             name: data.name,
             default_price_data: {
-              currency: "USD",
+              currency: "NGN",
               unit_amount: Math.round(data.price * 100),
             },
           });
@@ -152,9 +152,8 @@ export const Products: CollectionConfig = {
     },
     {
       name: "price",
-      label: "Price in USD",
+      label: "Price in NGN",
       min: 0,
-      max: 1000,
       type: "number",
       required: true,
     },
