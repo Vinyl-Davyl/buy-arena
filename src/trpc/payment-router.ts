@@ -55,7 +55,7 @@ export const paymentRouter = router({
       });
 
       line_items.push({
-        price: "price_1Ph8PCEt26n6iK6GS5Ia2USe",
+        price: "price_1Q1APcEt26n6iK6GluuT3ZAb",
         // paystack
         // price: "transaction-fee-xvcvst",
         quantity: 1,
