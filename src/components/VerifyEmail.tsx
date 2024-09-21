@@ -31,7 +31,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
     return (
       <div className="flex h-full flex-col items-center justify-center">
         <div className="relative mb-4 h-60 w-60 text-muted-foreground">
-          <Image src="/hippo-email-sent.png" fill alt="the email was sent" />
+          <Image src="/main-email-sent.png" fill alt="the email was sent" />
         </div>
 
         <h3 className="font-semibold text-2xl">You&apos;re all set!</h3>
