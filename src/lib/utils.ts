@@ -27,7 +27,7 @@ export function formatPrice(
 
 export function constructMetadata({
   title = "BuyArena - the marketplace for digital assets",
-  description = "DigitalHippo is an open-source marketplace for high-quality digital goods.",
+  description = "BuyArena is an open-source marketplace for high-quality digital goods.",
   image = "/thumbnail.png",
   icons = "/favicon.ico",
   noIndex = false,
