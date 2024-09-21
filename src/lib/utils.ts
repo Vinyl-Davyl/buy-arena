@@ -13,7 +13,7 @@ export function formatPrice(
     notation?: Intl.NumberFormatOptions["notation"];
   } = {}
 ) {
-  const { currency = "NGN", notation = "compact" } = options;
+  const { currency = "NGN", notation = "standard" } = options;
 
   const numericPrice = typeof price === "string" ? parseFloat(price) : price;
 
@@ -21,7 +21,7 @@ export function formatPrice(
     style: "currency",
     currency,
     notation,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 0,
   }).format(numericPrice);
 }
 
