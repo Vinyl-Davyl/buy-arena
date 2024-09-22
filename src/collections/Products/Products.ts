@@ -165,6 +165,18 @@ export const Products: CollectionConfig = {
       required: true,
     },
     {
+      name: "location",
+      label: "Location",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "phone",
+      label: "Phone Number",
+      type: "text",
+      required: true,
+    },
+    {
       name: "product_files",
       label: "Product file(s)",
       type: "relationship",
