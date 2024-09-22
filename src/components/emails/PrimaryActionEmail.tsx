@@ -38,7 +38,7 @@ export const EmailTemplate = ({
             src={`${baseUrl}/hippo-newsletter-sign-up.png`}
             width="150"
             height="150"
-            alt="DigitalHippo"
+            alt="BuyArena"
             style={logo}
           />
           <Text style={paragraph}>Hi there,</Text>

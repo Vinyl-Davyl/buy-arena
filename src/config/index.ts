@@ -1,43 +1,43 @@
 export const PRODUCT_CATEGORIES = [
   {
-    label: "UI Kits",
-    value: "ui_kits" as const,
+    label: "Buys",
+    value: "buys" as const,
     featured: [
       {
-        name: "Editor picks",
-        href: "/products?category=ui_kits",
-        imageSrc: "/nav/ui-kits/mixed.jpg",
+        name: "Editor Picks",
+        href: "/products?category=buys",
+        imageSrc: "/nav/buy/picks.jpg",
       },
       {
         name: "New Arrivals",
-        href: "/products?category=ui_kits&sort=desc",
-        imageSrc: "/nav/ui-kits/blue.jpg",
+        href: "/products?category=buys&sort=desc",
+        imageSrc: "/nav/buy/new.jpg",
       },
       {
-        name: "Bestsellers",
-        href: "/products?category=ui_kits",
-        imageSrc: "/nav/ui-kits/purple.jpg",
+        name: "Best Buys",
+        href: "/products?category=buys",
+        imageSrc: "/nav/buy/bestbuys.jpg",
       },
     ],
   },
   {
-    label: "Icons",
-    value: "icons" as const,
+    label: "Rents",
+    value: "rents" as const,
     featured: [
       {
-        name: "Favorite Icon Picks",
-        href: "/products?category=icons",
-        imageSrc: "/nav/icons/picks.jpg",
+        name: "Favorite Rent Picks",
+        href: "/products?category=rents",
+        imageSrc: "/nav/rent/favorite.jpg",
       },
       {
         name: "New Arrivals",
-        href: "/products?category=icons&sort=desc",
-        imageSrc: "/nav/icons/new.jpg",
+        href: "/products?category=rents&sort=desc",
+        imageSrc: "/nav/rent/newarrivals.jpg",
       },
       {
-        name: "Bestselling Icons",
-        href: "/products?category=icons",
-        imageSrc: "/nav/icons/bestsellers.jpg",
+        name: "Best Rated Rents",
+        href: "/products?category=rents",
+        imageSrc: "/nav/rent/bestrated.jpg",
       },
     ],
   },

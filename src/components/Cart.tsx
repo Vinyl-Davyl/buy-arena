@@ -96,9 +96,9 @@ const Cart = () => {
               className="relative mb-4 h-60 w-60 text-muted-foreground"
             >
               <Image
-                src="/hippo-empty-cart.png"
+                src="/main-empty-cart.png"
                 fill
-                alt="empty shopping cart hippo"
+                alt="empty shopping cart"
               />
             </div>
             <div className="text-xl font-semibold">Your cart is empty</div>

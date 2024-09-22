@@ -46,7 +46,7 @@ export const ReceiptEmail = ({
           <Section>
             <Column>
               <Img
-                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-email-sent.png`}
+                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/main-email-sent.png`}
                 width="100"
                 height="100"
                 alt="Buy Arena"
@@ -166,7 +166,7 @@ export const ReceiptEmail = ({
             <Link href="#">Privacy Policy </Link>
           </Text>
           <Text style={footerCopyright}>
-            Copyright © 2023 DigitalHippo Inc. <br />{" "}
+            Copyright © 2023 BuyArena Inc. <br />{" "}
             <Link href="#">All rights reserved</Link>
           </Text>
         </Container>

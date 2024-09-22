@@ -2,10 +2,11 @@ import AddToCartButton from "@/components/AddToCartButton";
 import ImageSlider from "@/components/ImageSlider";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/ProductReel";
+import { Button } from "@/components/ui/button";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import { formatPrice } from "@/lib/utils";
-import { Check, Shield } from "lucide-react";
+import { Check, MapPin, Phone, Shield } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -93,8 +94,11 @@ const Page = async ({ params }: PageProps) => {
                 </p>
 
                 <div className="ml-4 border-l text-muted-foreground border-gray-300 pl-4">
-                  {label}
+                   {label}
                 </div>
+              </div>
+              <div className="display flex text-muted-foreground mt-4">
+                <MapPin className="mt-1 mr-1 h-4 w-4 text-blue-500" /> {product.location} 
               </div>
 
               <div className="mt-4 space-y-6">
@@ -124,23 +128,27 @@ const Page = async ({ params }: PageProps) => {
 
           {/* Add to cart */}
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-            <div>
-              <div className="mt-10">
-                <AddToCartButton product={product} />
-              </div>
-              <div className="mt-6 text-center">
-                <div className="group inline-flex text-sm text-medium">
-                  <Shield
-                    aria-hidden="true"
-                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-400"
-                  />
-                  <span className="text-muted-foreground hover:text-gray-700">
-                    30 Day Return Guarantee
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div>
+    <div className="mt-10">
+      <AddToCartButton product={product} />
+    </div>
+
+    <div className="text-center">
+      <div className="mt-4">
+        <Button variant="ghost" size="lg" className="w-full h-12">
+          <a
+            href={`tel:${product.phone}`}
+            className="flex items-center justify-center w-full h-full text-sm text-muted-foreground"
+          >
+            <Phone className="mr-1 h-6 w-6 text-blue-500 shake" />
+            <span>Call or Chat via WhatsApp</span>
+            <span className="sr-only">{product.phone}</span>
+          </a>
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 

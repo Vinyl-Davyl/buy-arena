@@ -70,3 +70,37 @@
   background: white !important;
   scale: 1 !important ;
 }
+
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-2px, -2px) rotate(-3deg); }
+  20% { transform: translate(2px, -2px) rotate(3deg); }
+  30% { transform: translate(-2px, 2px) rotate(-3deg); }
+  40% { transform: translate(2px, 2px) rotate(3deg); }
+  50% { transform: translate(0, 0) rotate(0deg); } 
+  60% { transform: translate(-2px, -2px) rotate(-3deg); }
+  70% { transform: translate(2px, -2px) rotate(3deg); }
+  80% { transform: translate(-2px, 2px) rotate(-3deg); }
+  90% { transform: translate(2px, 2px) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shake {
+  animation: ring 1s ease-in-out infinite; 
+  animation-delay: 0s, 2s;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes arrow-bounce {
+  0%, 80% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.arrow {
+  display: inline-block; 
+  animation: arrow-bounce 4s ease-in-out infinite;
+}
