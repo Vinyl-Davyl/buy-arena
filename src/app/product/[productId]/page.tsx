@@ -128,27 +128,27 @@ const Page = async ({ params }: PageProps) => {
 
           {/* Add to cart */}
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
-            <div>
-              <div className="mt-10">
-                <AddToCartButton product={product} />
-              </div>
+  <div>
+    <div className="mt-10">
+      <AddToCartButton product={product} />
+    </div>
 
-              <div className="text-center">
-                <div className="mt-8 group inline-flex text-sm text-medium">
-                <Button variant="ghost">
-                  <a
-                    href={`tel:${product.phone}`}
-                    className="flex items-center text-sm text-muted-foreground"
-                  >
-                    <Phone className="mr-1 h-6 w-6 text-blue-500 shake" />
-                    <span>Call or Chat via Whatsapp</span>
-                    <span className="sr-only">{product.phone}</span>
-                  </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="text-center">
+      <div className="mt-4">
+        <Button variant="ghost" size="lg" className="w-full h-12">
+          <a
+            href={`tel:${product.phone}`}
+            className="flex items-center justify-center w-full h-full text-sm text-muted-foreground"
+          >
+            <Phone className="mr-1 h-6 w-6 text-blue-500 shake" />
+            <span>Call or Chat via WhatsApp</span>
+            <span className="sr-only">{product.phone}</span>
+          </a>
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
