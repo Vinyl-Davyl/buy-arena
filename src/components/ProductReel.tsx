@@ -11,28 +11,31 @@ interface ProductReelProps {
   subtitle?: string;
   href?: string;
   query: TQueryValidator;
+  isFeatured?: boolean; 
 }
 
 const FALLBACK_LIMIT = 4;
 
 const ProductReel = (props: ProductReelProps) => {
-  const { title, subtitle, href, query } = props;
+  const { title, subtitle, href, query, isFeatured } = props;
 
-  const { data: queryResults, isLoading } =
-    trpc.getInfiniteProducts.useInfiniteQuery(
-      {
-        limit: query.limit ?? FALLBACK_LIMIT,
-        query,
-      },
-      {
-        getNextPageParam: (lastPage) => lastPage.nextPage,
-      }
-    );
+  // Use the appropriate query based on the isFeatured prop
+  const { data: queryResults, isLoading } = isFeatured
+    ? trpc.getFeaturedProducts.useQuery({ limit: query.limit ?? FALLBACK_LIMIT })
+    : trpc.getInfiniteProducts.useInfiniteQuery(
+        {
+          limit: query.limit ?? FALLBACK_LIMIT,
+          query,
+        },
+        {
+          getNextPageParam: (lastPage) => lastPage.nextPage,
+        }
+      );
 
     console.log("queryResults:", queryResults);
     console.log("isLoading:", isLoading);
 
-    const products = queryResults?.pages.flatMap((page) => page.items);
+    const products = isFeatured ? queryResults : queryResults?.pages.flatMap((page) => page.items) || [];
 
   console.log("products:", products);
   let map: (Product | null)[] = [];
