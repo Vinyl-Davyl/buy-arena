@@ -16,7 +16,7 @@ const parse = (param: Param) => {
 const ProductsPage = ({ searchParams }: ProductsPageProps) => {
   const sort = parse(searchParams.sort);
   const category = parse(searchParams.category);
-  const isFeatured = parse(searchParams.featured); // Check if the featured parameter is present
+  const isFeatured = parse(searchParams.featured);
 
   const label = PRODUCT_CATEGORIES.find(
     ({ value }) => value === category

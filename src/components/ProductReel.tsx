@@ -35,11 +35,15 @@ const ProductReel = (props: ProductReelProps) => {
     console.log("queryResults:", queryResults);
     console.log("isLoading:", isLoading);
 
-    const products = isFeatured ? queryResults : queryResults?.pages.flatMap((page) => page.items) || [];
+    const products = isFeatured 
+    ? queryResults 
+    : Array.isArray(queryResults) 
+      ? queryResults 
+      : queryResults?.pages.flatMap((page) => page.items) || [];
 
   console.log("products:", products);
   let map: (Product | null)[] = [];
-  if (products && products.length) {
+  if (Array.isArray(products) && products.length > 0) {
     map = products;
   } else if (isLoading) {
     map = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
