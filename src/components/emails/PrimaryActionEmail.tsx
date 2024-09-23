@@ -36,8 +36,6 @@ export const EmailTemplate = ({
         <Container style={container}>
           <Img
             src={`${baseUrl}/main-logo.png`}
-            width="150"
-            height="150"
             alt="BuyArena"
             style={logo}
           />
