@@ -210,6 +210,18 @@ export const Products: CollectionConfig = {
       ],
     },
     {
+      name: "isFeatured",
+      label: "Is Featured",
+      type: "checkbox",
+      defaultValue: false,
+      required: false,
+      access: {
+        create: ({ req }) => req.user.role === "admin",
+        read: ({ req }) => req.user.role === "admin",  
+        update: ({ req }) => req.user.role === "admin",
+      },
+    },
+    {
       name: "priceId",
       access: {
         create: () => false,

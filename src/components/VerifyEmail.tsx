@@ -17,7 +17,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex h-full flex-col items-center justify-center">
         <XCircle className="h-8 w-8 text-red-600" />
         <h3 className="font-semibold text-xl">There was a problem</h3>
         <p className="text-muted-foreground text-sm">
@@ -47,7 +47,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex h-full flex-col items-center justify-center">
         <Loader2 className="animate-spin h-8 w-8 text-zinc-300" />
         <h3 className="font-semibold text-xl">Verifying...</h3>
         <p className="text-muted-foreground text-sm">

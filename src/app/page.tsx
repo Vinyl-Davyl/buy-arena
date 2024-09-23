@@ -49,9 +49,15 @@ export default function Home() {
         </div>
 
         <ProductReel
-          query={{ sort: "desc", limit: 4 }}
+          query={{ sort: "desc", limit: 8 }}
           href="/products?sort=recent"
           title="Brand new"
+        />
+        <ProductReel
+          query={{ limit: 4 }}
+           href="/products?featured=true"
+          title="Featured items"
+          isFeatured={true}
         />
       </MaxWidthWrapper>
 

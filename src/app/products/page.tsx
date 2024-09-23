@@ -1,3 +1,4 @@
+// src/app/products/page.tsx
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/ProductReel";
 import { PRODUCT_CATEGORIES } from "@/config";
@@ -13,9 +14,9 @@ const parse = (param: Param) => {
 };
 
 const ProductsPage = ({ searchParams }: ProductsPageProps) => {
-  // pending on the dropdown on the home nabar
   const sort = parse(searchParams.sort);
   const category = parse(searchParams.category);
+  const isFeatured = parse(searchParams.featured);
 
   const label = PRODUCT_CATEGORIES.find(
     ({ value }) => value === category
@@ -24,10 +25,10 @@ const ProductsPage = ({ searchParams }: ProductsPageProps) => {
   return (
     <MaxWidthWrapper>
       <ProductReel
-        title={label ?? "Browse high-quality assets"}
+        title={isFeatured ? "Featured Products" : label ?? "Browse high-quality assets"}
         query={{
           category,
-          limit: 40,
+          limit: isFeatured ? 8 : 40,
           sort: sort === "desc" || sort === "asc" ? sort : undefined,
         }}
       />

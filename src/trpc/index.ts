@@ -57,6 +57,33 @@ export const appRouter = router({
         nextPage: hasNextPage ? nextPage : null,
       };
     }),
+
+    getFeaturedProducts: publicProcedure
+    .input(
+      z.object({
+        limit: z.number().min(1).max(100).optional(),
+      })
+    )
+    .query(async ({ input }) => {
+      const limit = input.limit || 4;
+
+      const payload = await getPayloadClient();
+
+      const {
+        docs: items,
+      } = await payload.find({
+        collection: "products",
+        where: {
+          isFeatured: {
+            equals: true,
+          },
+        },
+        limit,
+        depth: 1,
+      });
+
+      return items;
+    }),
 });
 
 export type AppRouter = typeof appRouter;
