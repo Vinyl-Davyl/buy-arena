@@ -31,11 +31,11 @@ export const EmailTemplate = ({
   return (
     <Html>
       <Head />
-      <Preview>The marketplace for high-quality digital goods.</Preview>
+      <Preview>The marketplace for selling, buying, & renting products easily.</Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${baseUrl}/hippo-newsletter-sign-up.png`}
+            src={`${baseUrl}/main-logo.png`}
             width="150"
             height="150"
             alt="BuyArena"
@@ -43,7 +43,7 @@ export const EmailTemplate = ({
           />
           <Text style={paragraph}>Hi there,</Text>
           <Text style={paragraph}>
-            Welcome to BuyArena, the marketplace for high quality digital goods.
+            Welcome to BuyArena, the one for all marketplace for selling, buying, & renting products easily.
             Use the button below to {actionLabel}.
           </Text>
           <Section style={btnContainer}>

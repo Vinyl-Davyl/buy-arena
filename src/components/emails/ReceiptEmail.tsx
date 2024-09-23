@@ -46,7 +46,7 @@ export const ReceiptEmail = ({
           <Section>
             <Column>
               <Img
-                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/main-email-sent.png`}
+                src={`${process.env.NEXT_PUBLIC_SERVER_URL}/main-logo.png`}
                 width="100"
                 height="100"
                 alt="Buy Arena"
