@@ -28,7 +28,7 @@ const ProductsPage = ({ searchParams }: ProductsPageProps) => {
         title={isFeatured ? "Featured Products" : label ?? "Browse high-quality assets"}
         query={{
           category,
-          limit: isFeatured ? 8 : 40,
+          limit: isFeatured ? 8 : 50,
           sort: sort === "desc" || sort === "asc" ? sort : undefined,
         }}
       />

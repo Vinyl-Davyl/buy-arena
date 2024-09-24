@@ -69,7 +69,7 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
 
                       <Link
                         href={item.href}
-                        className="mt-6 block font-medium text-gray-900"
+                        className="mt-6 block font-medium text-gray-900 hover:text-blue-600" 
                       >
                         {item.name}
                       </Link>

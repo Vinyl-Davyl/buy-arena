@@ -16,6 +16,14 @@ interface ProductReelProps {
 
 const FALLBACK_LIMIT = 4;
 
+const shuffleArray = (array: Product[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href, query, isFeatured } = props;
 
@@ -32,19 +40,19 @@ const ProductReel = (props: ProductReelProps) => {
         }
       );
 
-    console.log("queryResults:", queryResults);
-    console.log("isLoading:", isLoading);
-
-    const products = isFeatured 
+    // console.log("queryResults:", queryResults);
+    // console.log("isLoading:", isLoading);
+  const products = isFeatured 
     ? queryResults 
     : Array.isArray(queryResults) 
       ? queryResults 
       : queryResults?.pages.flatMap((page) => page.items) || [];
 
-  console.log("products:", products);
+  // console.log("products:", products);
+    
   let map: (Product | null)[] = [];
   if (Array.isArray(products) && products.length > 0) {
-    map = products;
+    map = shuffleArray(products as unknown as Product[]);
   } else if (isLoading) {
     map = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
   }
