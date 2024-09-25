@@ -45,7 +45,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         <div className="flex flex-col w-full">
           <ImageSlider urls={validUrls} />
 
-          <h3 className="mt-4 font-medium text-sm text-gray-700 relative">
+          <h3 className="mt-4 font-medium text-sm text-gray-700 hover:text-[#1E3A8A] relative">
             {product.name}
             <span className="absolute top-0 right-0 mt-1 mr-1 inline-block bg-[#cae5fe] text-blue-400 text-xxs px-1 py-0.3 rounded-full">
               {label}
