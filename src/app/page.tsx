@@ -26,13 +26,14 @@ const perks = [
 ];
 
 export default function Home() {
+
   return (
     <>
       <MaxWidthWrapper>
         <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           Your marketplace to{" "}
-            <span className="text-blue-600">sell, buy, & rent products easily</span>. One for all.
+            <span className="text-blue-600">rent, buy, & sell products easily</span>. One for all.
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
             Welcome to BuyArena. Every asset on our platform is verified by our
@@ -49,7 +50,7 @@ export default function Home() {
         </div>
 
         <ProductReel
-          query={{ sort: "desc", limit: 8 }}
+          query={{ limit: 8 }}
           href="/products?sort=recent"
           title="Brand new"
         />
