@@ -34,7 +34,7 @@ Leave a ⭐️ If this piques your interest!
 
 ## Tech Stack
 
-Built to ensure performance, scalability, and flexibility with `Next.js` `TypeScript` `tRPC` `Payload CMS` `Express` `nodemailer` `Tailwind` `Zod` and `Stripe/Paystack` `Zustland`, `Resend` email service for testing, and sending transactional emails `MongoDB` DB systems for Database Management and storage.
+Built to ensure performance, scalability, and flexibility with `Next.js` `TypeScript` `tRPC` `Payload CMS` `Express` `nodemailer` `Tailwind` `Zod` and `Stripe/Paystack` `Zustand`, `Resend` email service for testing, and sending transactional emails `MongoDB` DB systems for Database Management and storage.
 
 ## 🚀 Features
 
